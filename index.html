@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuestAlarm — Builder of Game Tools</title>
+
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #12182a;
+      --accent: #7cf3ff;
+      --text: #e8ecf1;
+      --muted: #9aa4bf;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at top, #141a33, var(--bg));
+      color: var(--text);
+    }
+
+    header {
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    p.subtitle {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--bg);
+      background: var(--accent);
+      font-weight: 600;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .links a.secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .links a:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1/Quest<span>Alarm</span></h1>
+  <p class="subtitle">
+    Builder of game-focused tools, cinematic experiences, and AI-powered products.
+  </p>
+
+  <div class="links">
+    <a href="https://github.com/QuestAlarm" target="_blank">GitHub</a>
+    <a href="https://questalarmaccess.carrd.co/" class="secondary" target="_blank">QuestAlarm</a>
+  </div>
+</header>
+
+<section>
+
+  <div class="card">
+    <h3>🎮 QuestAlarm</h3>
+    <p>
+      A companion app that translates real-world time into in-game urgency,
+      helping gamers never miss dailies, events, or limited-time rewards.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>🤖 Aegis</h3>
+    <p>
+      An evolving AI companion that grows through streaks, quests, and progression —
+      designed with RPG mechanics and premium cinematic flair.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>🛠 What I’m Building</h3>
+    <ul>
+      <li>Game utility apps</li>
+      <li>AI companions & assistants</li>
+      <li>Cinematic UI/UX systems</li>
+      <li>Indie startup prototypes</li>
+    </ul>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 QuestAlarm · Built with GitHub Pages
+</footer>
+
+</body>
+</html>
