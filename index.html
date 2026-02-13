@@ -1,193 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QuestAlarm — Builder of Game Tools</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>QuestAlarm — Premium Builder of Game Tools</title>
 
-  <style>
-    :root {
-      --bg: #0b0f1a;
-      --card: #12182a;
-      --accent: #7cf3ff;
-      --accent-soft: rgba(124,243,255,0.25);
-      --text: #e8ecf1;
-      --muted: #9aa4bf;
-    }
+<style>
+/* ======================
+   THEME VARIABLES
+====================== */
+:root {
+  --bg: #0b0f1a;
+  --bg-alt: #141a33;
+  --card: #12182a;
+  --accent: #7cf3ff;
+  --accent-soft: rgba(124,243,255,0.35);
+  --text: #e8ecf1;
+  --muted: #9aa4bf;
+}
 
-    * { box-sizing: border-box; }
+[data-theme="light"] {
+  --bg: #f4f7fb;
+  --bg-alt: #ffffff;
+  --card: #ffffff;
+  --accent: #3b82f6;
+  --accent-soft: rgba(59,130,246,0.25);
+  --text: #0f172a;
+  --muted: #475569;
+}
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background:
-        radial-gradient(800px circle at top, #1a2250, transparent 60%),
-        radial-gradient(600px circle at bottom, #0f1430, transparent 60%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+/* ======================
+   BASE
+====================== */
+* { box-sizing: border-box; }
 
-    header {
-      padding: 5rem 1.5rem 4rem;
-      text-align: center;
-    }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:
+    radial-gradient(800px circle at top, var(--bg-alt), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
+}
 
-    h1 {
-      font-size: clamp(2.4rem, 5vw, 3.2rem);
-      margin: 0 0 0.75rem;
-      letter-spacing: -0.02em;
-    }
+/* ======================
+   HEADER
+====================== */
+header {
+  position: relative;
+  padding: 6rem 1.5rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
 
-    h1 span {
-      color: var(--accent);
-      text-shadow: 0 0 18px var(--accent-soft);
-    }
+.hero-title {
+  font-size: clamp(2.6rem, 5vw, 3.4rem);
+  margin: 0;
+  letter-spacing: -0.03em;
+  animation: reveal 1.4s ease forwards;
+}
 
-    .subtitle {
-      color: var(--muted);
-      max-width: 640px;
-      margin: 0 auto 2.5rem;
-      font-size: 1.15rem;
-    }
+.hero-title span {
+  color: var(--accent);
+  text-shadow: 0 0 22px var(--accent-soft);
+}
 
-    .links a {
-      display: inline-block;
-      margin: 0.4rem;
-      padding: 0.8rem 1.4rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-    }
+.subtitle {
+  max-width: 640px;
+  margin: 1rem auto 2.5rem;
+  color: var(--muted);
+  font-size: 1.15rem;
+  animation: fadeUp 1.6s ease forwards;
+}
 
-    .links a.primary {
-      background: linear-gradient(135deg, #7cf3ff, #55c7ff);
-      color: #071018;
-      box-shadow: 0 8px 30px rgba(124,243,255,0.35);
-    }
+/* ======================
+   BUTTONS
+====================== */
+.links a {
+  display: inline-block;
+  margin: 0.4rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
 
-    .links a.secondary {
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-    }
+.primary {
+  background: linear-gradient(135deg, var(--accent), #55c7ff);
+  color: #071018;
+  box-shadow: 0 10px 30px var(--accent-soft);
+}
 
-    .links a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(124,243,255,0.45);
-      opacity: 0.95;
-    }
+.secondary {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
 
-    section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1.5rem 5rem;
-      display: grid;
-      gap: 1.5rem;
-    }
+.links a:hover {
+  transform: translateY(-3px);
+}
 
-    .card {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04), transparent 40%),
-        var(--card);
-      border-radius: 18px;
-      padding: 1.75rem;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.05);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
+/* ======================
+   TOGGLE
+====================== */
+.toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-    }
+/* ======================
+   AEGIS FLOATING
+====================== */
+.aegis {
+  position: absolute;
+  right: 6%;
+  top: 40%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at top, var(--accent), transparent 60%),
+    var(--card);
+  box-shadow: 0 0 40px var(--accent-soft);
+  animation: float 5s ease-in-out infinite;
+}
 
-    .card h3 {
-      margin: 0 0 0.6rem;
-      color: var(--accent);
-      font-size: 1.2rem;
-      letter-spacing: 0.02em;
-    }
+/* ======================
+   CONTENT
+====================== */
+section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 1.5rem 5rem;
+  display: grid;
+  gap: 1.5rem;
+}
 
-    .card p,
-    .card li {
-      color: var(--text);
-    }
+.card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 1.8rem;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+  transition: transform 0.25s ease;
+}
 
-    ul {
-      padding-left: 1.1rem;
-      margin: 0.5rem 0 0;
-    }
+.card:hover {
+  transform: translateY(-6px);
+}
 
-    li {
-      margin-bottom: 0.35rem;
-      color: var(--muted);
-    }
+.card h3 {
+  margin: 0 0 0.6rem;
+  color: var(--accent);
+}
 
-    footer {
-      text-align: center;
-      padding: 2.5rem 1rem 2rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-      opacity: 0.85;
-    }
+/* ======================
+   TIMELINE
+====================== */
+.timeline {
+  display: grid;
+  gap: 1rem;
+}
 
-    footer span {
-      color: var(--accent);
-    }
-  </style>
-</head>
+.milestone {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 
-<body>
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-soft);
+}
 
-<header>
-  <h1>Quest<span>Alarm</span></h1>
-  <p class="subtitle">
-    Builder of game-focused tools, cinematic digital experiences,
-    and AI-powered products for players and creators.
-  </p>
-
-  <div class="links">
-    <a href="https://github.com/QuestAlarm" target="_blank" class="primary">GitHub</a>
-    <a href="https://questalarmaccess.carrd.co/" target="_blank" class="secondary">QuestAlarm</a>
-  </div>
-</header>
-
-<section>
-
-  <div class="card">
-    <h3>🎮 QuestAlarm</h3>
-    <p>
-      A companion app that translates real-world time into in-game urgency —
-      ensuring players never miss dailies, events, or limited-time rewards.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>🤖 Aegis</h3>
-    <p>
-      An evolving AI companion that grows through streaks, quests,
-      and progression — built with RPG mechanics and cinematic presentation.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>🛠 What I’m Building</h3>
-    <ul>
-      <li>Game utility & companion apps</li>
-      <li>AI companions and assistants</li>
-      <li>Cinematic UI / UX systems</li>
-      <li>Indie startup and MVP prototypes</li>
-    </ul>
-  </div>
-
-</section>
-
-<footer>
-  © 2026 <span>QuestAlarm</span> · Built with GitHub Pages
-</footer>
-
-</body>
-</html>
+/* ======================
+   FOOTER
+====================== */
+footer {
+  text-align: center;
+  padding: 2
