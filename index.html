@@ -114,43 +114,23 @@ header{
   background:transparent;
 }
 
-<!-- AEGIS FLOATING -->
-<div class="aegis">
-  <img src="aegis.png" alt="Aegis Companion">
-</div>
-
-<style>
+/* ======================
+   AEGIS FLOATING & INTERACTIVE
+====================== */
 .aegis{
   position:absolute;
   right:5%;
   top:35%;
-  width:70px; /* half size */
+  width:70px; /* half-size */
   pointer-events:none;
   animation:float 6s ease-in-out infinite;
-  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, top 0.2s ease-out;
 }
 
 .aegis img{
   width:100%;
   filter:drop-shadow(0 0 20px var(--accent-soft));
 }
-</style>
-
-<script>
-// Interactive flying Aegis
-const aegis=document.querySelector(".aegis");
-
-window.addEventListener("mousemove",e=>{
-  const xOffset=(e.clientX/window.innerWidth-0.5)*20; // move ±10px left/right
-  const yOffset=(e.clientY/window.innerHeight-0.5)*15; // move ±7px up/down
-  aegis.style.transform=`translate(${xOffset}px, ${yOffset}px)`;
-});
-
-window.addEventListener("scroll",()=>{
-  const scrollOffset=window.scrollY/50; // subtle scroll effect
-  aegis.style.top=`calc(35% + ${scrollOffset}px)`;
-});
-</script>
 
 /* ======================
    CONTENT CARDS
@@ -324,6 +304,18 @@ const observer=new IntersectionObserver(entries=>{
 document.querySelectorAll(".hero-title,.subtitle,.card,.quest").forEach(el=>{
   observer.observe(el);
   if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add("reveal");
+});
+
+/* INTERACTIVE FLYING AEGIS */
+const aegis=document.querySelector(".aegis");
+window.addEventListener("mousemove",e=>{
+  const xOffset=(e.clientX/window.innerWidth-0.5)*20; 
+  const yOffset=(e.clientY/window.innerHeight-0.5)*15;
+  aegis.style.transform=`translate(${xOffset}px, ${yOffset}px)`;
+});
+window.addEventListener("scroll",()=>{
+  const scrollOffset=window.scrollY/50;
+  aegis.style.top=`calc(35% + ${scrollOffset}px)`;
 });
 </script>
 
