@@ -3,38 +3,295 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>QuestAlarm — Premium Builder of Game Tools</title>
+<title>QuestAlarm — Legendary Build</title>
 
 <style>
 /* ======================
-   THEME VARIABLES
+   THEME
 ====================== */
 :root {
-  --bg: #0b0f1a;
-  --bg-alt: #141a33;
-  --card: #12182a;
-  --accent: #7cf3ff;
-  --accent-soft: rgba(124,243,255,0.35);
-  --text: #e8ecf1;
-  --muted: #9aa4bf;
+  --bg:#0b0f1a;
+  --card:#12182a;
+  --accent:#7cf3ff;
+  --accent-soft:rgba(124,243,255,.35);
+  --text:#e8ecf1;
+  --muted:#9aa4bf;
 }
 
 [data-theme="light"] {
-  --bg: #f4f7fb;
-  --bg-alt: #ffffff;
-  --card: #ffffff;
-  --accent: #3b82f6;
-  --accent-soft: rgba(59,130,246,0.25);
-  --text: #0f172a;
-  --muted: #475569;
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --accent:#3b82f6;
+  --accent-soft:rgba(59,130,246,.3);
+  --text:#0f172a;
+  --muted:#475569;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:radial-gradient(900px circle at top,#1a2250,transparent 60%),var(--bg);
+  color:var(--text);
+  transition:.4s;
 }
 
 /* ======================
-   BASE
+   HEADER
 ====================== */
-* { box-sizing: border-box; }
+header{
+  position:relative;
+  padding:6rem 1.5rem 4rem;
+  text-align:center;
+  overflow:hidden;
+}
 
-body {
+.hero-title{
+  font-size:clamp(2.6rem,5vw,3.4rem);
+  margin:0;
+  opacity:0;
+  transform:translateY(20px);
+}
+
+.hero-title span{
+  color:var(--accent);
+  text-shadow:0 0 22px var(--accent-soft);
+}
+
+.subtitle{
+  max-width:640px;
+  margin:1rem auto 2.5rem;
+  color:var(--muted);
+  opacity:0;
+  transform:translateY(20px);
+}
+
+/* ======================
+   CONTROLS
+====================== */
+.controls{
+  position:absolute;
+  top:1.5rem;
+  right:1.5rem;
+  display:flex;
+  gap:.75rem;
+  font-size:.85rem;
+}
+
+.control{
+  cursor:pointer;
+  padding:.4rem .7rem;
+  border-radius:999px;
+  border:1px solid var(--accent);
+  color:var(--accent);
+}
+
+/* ======================
+   AEGIS
+====================== */
+.aegis{
+  position:absolute;
+  right:5%;
+  top:35%;
+  width:140px;
+  pointer-events:none;
+  animation:float 6s ease-in-out infinite;
+}
+
+.aegis img{
+  width:100%;
+  filter:drop-shadow(0 0 25px var(--accent-soft));
+}
+
+/* ======================
+   BUTTONS
+====================== */
+.links a{
+  display:inline-block;
+  margin:.4rem;
+  padding:.85rem 1.6rem;
+  border-radius:999px;
+  font-weight:600;
+  text-decoration:none;
+  transition:.25s;
+}
+
+.primary{
+  background:linear-gradient(135deg,var(--accent),#55c7ff);
+  color:#071018;
+  box-shadow:0 10px 30px var(--accent-soft);
+}
+
+.secondary{
+  border:1px solid var(--accent);
+  color:var(--accent);
+}
+
+.links a:hover{transform:translateY(-3px)}
+
+/* ======================
+   CONTENT
+====================== */
+section{
+  max-width:1000px;
+  margin:auto;
+  padding:0 1.5rem 5rem;
+  display:grid;
+  gap:1.5rem;
+}
+
+.card{
+  background:var(--card);
+  border-radius:18px;
+  padding:1.8rem;
+  box-shadow:0 18px 45px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(30px);
+}
+
+.card h3{color:var(--accent);margin-top:0}
+
+/* ======================
+   QUEST LOG
+====================== */
+.quest-log{
+  display:grid;
+  gap:1rem;
+}
+
+.quest{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 1.2rem;
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),transparent),var(--card);
+  border-left:4px solid var(--accent);
+}
+
+.quest span{
+  font-size:.75rem;
+  padding:.25rem .6rem;
+  border-radius:999px;
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-weight:600;
+}
+
+/* ======================
+   FOOTER
+====================== */
+footer{
+  text-align:center;
+  padding:2rem;
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+/* ======================
+   ANIMATIONS
+====================== */
+.reveal{
+  opacity:1!important;
+  transform:translateY(0)!important;
+  transition:.8s ease;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="controls">
+    <div class="control" onclick="toggleTheme()">🌗 Theme</div>
+    <div class="control" onclick="toggleSound()">🔊 Sound</div>
+  </div>
+
+  <div class="aegis">
+    <img src="aegis.png" alt="Aegis Companion">
+  </div>
+
+  <h1 class="hero-title">Quest<span>Alarm</span></h1>
+  <p class="subtitle">
+    Legendary game tools, AI companions, and cinematic systems
+    for players who never miss a quest.
+  </p>
+
+  <div class="links">
+    <a class="primary" href="https://github.com/QuestAlarm" target="_blank">GitHub</a>
+    <a class="secondary" href="https://questalarmaccess.carrd.co/" target="_blank">QuestAlarm</a>
+  </div>
+</header>
+
+<section>
+
+  <div class="card">
+    <h3>🎮 QuestAlarm</h3>
+    <p>Turns real-world time into in-game urgency.</p>
+  </div>
+
+  <div class="card">
+    <h3>🤖 Aegis Companion</h3>
+    <p>An evolving AI ally powered by streaks, quests, and progression.</p>
+  </div>
+
+  <div class="card">
+    <h3>📜 Quest Log — Coming Soon</h3>
+    <div class="quest-log">
+      <div class="quest">Closed Alpha <span>ACTIVE</span></div>
+      <div class="quest">Aegis Evolution System <span>LOCKED</span></div>
+      <div class="quest">Cross-Game Sync <span>LOCKED</span></div>
+      <div class="quest">Public Launch <span>LOCKED</span></div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 QuestAlarm · Legendary Build
+</footer>
+
+<!-- CINEMATIC SOUND -->
+<audio id="ambient" loop>
+  <source src="ambient.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* THEME */
+function toggleTheme(){
+  const t=document.documentElement.getAttribute("data-theme")==="light"?"dark":"light";
+  document.documentElement.setAttribute("data-theme",t);
+  localStorage.setItem("theme",t);
+}
+const savedTheme=localStorage.getItem("theme");
+if(savedTheme)document.documentElement.setAttribute("data-theme",savedTheme);
+
+/* SOUND */
+const audio=document.getElementById("ambient");
+let soundOn=false;
+function toggleSound(){
+  soundOn=!soundOn;
+  soundOn?audio.play():audio.pause();
+}
+
+/* SCROLL REVEAL */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("reveal");
+  });
+},{threshold:.15});
+
+document.querySelectorAll(".card,.hero-title,.subtitle").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   background:
