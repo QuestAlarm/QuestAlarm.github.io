@@ -114,22 +114,43 @@ header{
   background:transparent;
 }
 
-/* ======================
-   AEGIS FLOATING
-====================== */
+<!-- AEGIS FLOATING -->
+<div class="aegis">
+  <img src="aegis.png" alt="Aegis Companion">
+</div>
+
+<style>
 .aegis{
   position:absolute;
   right:5%;
   top:35%;
-  width:140px;
+  width:70px; /* half size */
   pointer-events:none;
   animation:float 6s ease-in-out infinite;
+  transition: transform 0.2s ease-out;
 }
 
 .aegis img{
   width:100%;
-  filter:drop-shadow(0 0 25px var(--accent-soft));
+  filter:drop-shadow(0 0 20px var(--accent-soft));
 }
+</style>
+
+<script>
+// Interactive flying Aegis
+const aegis=document.querySelector(".aegis");
+
+window.addEventListener("mousemove",e=>{
+  const xOffset=(e.clientX/window.innerWidth-0.5)*20; // move ±10px left/right
+  const yOffset=(e.clientY/window.innerHeight-0.5)*15; // move ±7px up/down
+  aegis.style.transform=`translate(${xOffset}px, ${yOffset}px)`;
+});
+
+window.addEventListener("scroll",()=>{
+  const scrollOffset=window.scrollY/50; // subtle scroll effect
+  aegis.style.top=`calc(35% + ${scrollOffset}px)`;
+});
+</script>
 
 /* ======================
    CONTENT CARDS
