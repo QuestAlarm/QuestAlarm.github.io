@@ -10,6 +10,7 @@
       --bg: #0b0f1a;
       --card: #12182a;
       --accent: #7cf3ff;
+      --accent-soft: rgba(124,243,255,0.25);
       --text: #e8ecf1;
       --muted: #9aa4bf;
     }
@@ -19,41 +20,52 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: radial-gradient(circle at top, #141a33, var(--bg));
+      background:
+        radial-gradient(800px circle at top, #1a2250, transparent 60%),
+        radial-gradient(600px circle at bottom, #0f1430, transparent 60%),
+        var(--bg);
       color: var(--text);
+      line-height: 1.6;
     }
 
     header {
-      padding: 4rem 1.5rem;
+      padding: 5rem 1.5rem 4rem;
       text-align: center;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      margin: 0 0 0.75rem;
+      letter-spacing: -0.02em;
     }
 
     h1 span {
       color: var(--accent);
+      text-shadow: 0 0 18px var(--accent-soft);
     }
 
-    p.subtitle {
+    .subtitle {
       color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      font-size: 1.1rem;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.15rem;
     }
 
     .links a {
       display: inline-block;
-      margin: 0.5rem;
-      padding: 0.75rem 1.25rem;
+      margin: 0.4rem;
+      padding: 0.8rem 1.4rem;
       border-radius: 999px;
       text-decoration: none;
-      color: var(--bg);
-      background: var(--accent);
       font-weight: 600;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .links a.primary {
+      background: linear-gradient(135deg, #7cf3ff, #55c7ff);
+      color: #071018;
+      box-shadow: 0 8px 30px rgba(124,243,255,0.35);
     }
 
     .links a.secondary {
@@ -63,34 +75,67 @@
     }
 
     .links a:hover {
-      transform: translateY(-2px);
-      opacity: 0.9;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(124,243,255,0.45);
+      opacity: 0.95;
     }
 
     section {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+      padding: 0 1.5rem 5rem;
+      display: grid;
+      gap: 1.5rem;
     }
 
     .card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), transparent 40%),
+        var(--card);
+      border-radius: 18px;
+      padding: 1.75rem;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
     }
 
     .card h3 {
-      margin-top: 0;
+      margin: 0 0 0.6rem;
       color: var(--accent);
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .card p,
+    .card li {
+      color: var(--text);
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin: 0.5rem 0 0;
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+      color: var(--muted);
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem 1rem 2rem;
       color: var(--muted);
       font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    footer span {
+      color: var(--accent);
     }
   </style>
 </head>
@@ -98,14 +143,15 @@
 <body>
 
 <header>
-  <h1/Quest<span>Alarm</span></h1>
+  <h1>Quest<span>Alarm</span></h1>
   <p class="subtitle">
-    Builder of game-focused tools, cinematic experiences, and AI-powered products.
+    Builder of game-focused tools, cinematic digital experiences,
+    and AI-powered products for players and creators.
   </p>
 
   <div class="links">
-    <a href="https://github.com/QuestAlarm" target="_blank">GitHub</a>
-    <a href="https://questalarmaccess.carrd.co/" class="secondary" target="_blank">QuestAlarm</a>
+    <a href="https://github.com/QuestAlarm" target="_blank" class="primary">GitHub</a>
+    <a href="https://questalarmaccess.carrd.co/" target="_blank" class="secondary">QuestAlarm</a>
   </div>
 </header>
 
@@ -114,33 +160,33 @@
   <div class="card">
     <h3>🎮 QuestAlarm</h3>
     <p>
-      A companion app that translates real-world time into in-game urgency,
-      helping gamers never miss dailies, events, or limited-time rewards.
+      A companion app that translates real-world time into in-game urgency —
+      ensuring players never miss dailies, events, or limited-time rewards.
     </p>
   </div>
 
   <div class="card">
     <h3>🤖 Aegis</h3>
     <p>
-      An evolving AI companion that grows through streaks, quests, and progression —
-      designed with RPG mechanics and premium cinematic flair.
+      An evolving AI companion that grows through streaks, quests,
+      and progression — built with RPG mechanics and cinematic presentation.
     </p>
   </div>
 
   <div class="card">
     <h3>🛠 What I’m Building</h3>
     <ul>
-      <li>Game utility apps</li>
-      <li>AI companions & assistants</li>
-      <li>Cinematic UI/UX systems</li>
-      <li>Indie startup prototypes</li>
+      <li>Game utility & companion apps</li>
+      <li>AI companions and assistants</li>
+      <li>Cinematic UI / UX systems</li>
+      <li>Indie startup and MVP prototypes</li>
     </ul>
   </div>
 
 </section>
 
 <footer>
-  © 2026 QuestAlarm · Built with GitHub Pages
+  © 2026 <span>QuestAlarm</span> · Built with GitHub Pages
 </footer>
 
 </body>
