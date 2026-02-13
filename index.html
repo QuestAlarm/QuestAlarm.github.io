@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>QuestAlarm — Legendary Build</title>
 
 <style>
-/* ======================
-   THEME
-====================== */
 :root {
   --bg:#0b0f1a;
   --card:#12182a;
@@ -17,7 +14,6 @@
   --text:#e8ecf1;
   --muted:#9aa4bf;
 }
-
 [data-theme="light"] {
   --bg:#f4f7fb;
   --card:#ffffff;
@@ -27,14 +23,14 @@
   --muted:#475569;
 }
 
-*{box-sizing:border-box}
+*{box-sizing:border-box;}
 
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  background:radial-gradient(900px circle at top,#1a2250,transparent 60%),var(--bg);
+  background:radial-gradient(800px circle at top,var(--bg-alt, #141a33),transparent 60%),var(--bg);
   color:var(--text);
-  transition:.4s;
+  transition: background 0.4s ease,color 0.4s ease;
 }
 
 /* ======================
@@ -50,8 +46,10 @@ header{
 .hero-title{
   font-size:clamp(2.6rem,5vw,3.4rem);
   margin:0;
-  opacity:1;
+  letter-spacing:-0.03em;
+  opacity:0;
   transform:translateY(20px);
+  animation: reveal 1.4s ease forwards;
 }
 
 .hero-title span{
@@ -63,56 +61,23 @@ header{
   max-width:640px;
   margin:1rem auto 2.5rem;
   color:var(--muted);
-  opacity:1;
+  font-size:1.15rem;
+  opacity:0;
   transform:translateY(20px);
+  animation: fadeUp 1.6s ease forwards;
 }
 
-/* ======================
-   CONTROLS
-====================== */
-.controls{
-  position:absolute;
-  top:1.5rem;
-  right:1.5rem;
-  display:flex;
-  gap:.75rem;
-  font-size:.85rem;
-}
-
-.control{
-  cursor:pointer;
-  padding:.4rem .7rem;
-  border-radius:999px;
-  border:1px solid var(--accent);
-  color:var(--accent);
-}
-
-/* ======================
-   AEGIS
-====================== */
-.aegis{
-  position:absolute;
-  right:5%;
-  top:35%;
-  width:140px;
-  pointer-events:none;
-  animation:float 6s ease-in-out infinite;
-}
-.https://i.ibb.co/jkR7qjZx/file-000000000e64720a9d53c9309745579c.png{
-  width:100%;
-  filter:drop-shadow(0 0 25px var(--accent-soft));
-}
 /* ======================
    BUTTONS
 ====================== */
 .links a{
   display:inline-block;
-  margin:.4rem;
-  padding:.85rem 1.6rem;
+  margin:0.4rem;
+  padding:0.85rem 1.6rem;
   border-radius:999px;
   font-weight:600;
   text-decoration:none;
-  transition:.25s;
+  transition:all 0.25s ease;
 }
 
 .primary{
@@ -129,7 +94,45 @@ header{
 .links a:hover{transform:translateY(-3px)}
 
 /* ======================
-   CONTENT
+   TOGGLE CONTROLS
+====================== */
+.controls{
+  position:absolute;
+  top:1.5rem;
+  right:1.5rem;
+  display:flex;
+  gap:.75rem;
+  font-size:.85rem;
+}
+
+.control{
+  cursor:pointer;
+  padding:.4rem .7rem;
+  border-radius:999px;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  background:transparent;
+}
+
+/* ======================
+   AEGIS FLOATING
+====================== */
+.aegis{
+  position:absolute;
+  right:5%;
+  top:35%;
+  width:140px;
+  pointer-events:none;
+  animation:float 6s ease-in-out infinite;
+}
+
+.aegis img{
+  width:100%;
+  filter:drop-shadow(0 0 25px var(--accent-soft));
+}
+
+/* ======================
+   CONTENT CARDS
 ====================== */
 section{
   max-width:1000px;
@@ -146,26 +149,31 @@ section{
   box-shadow:0 18px 45px rgba(0,0,0,.4);
   opacity:0;
   transform:translateY(30px);
+  transition:transform 0.25s ease;
 }
 
-.card h3{color:var(--accent);margin-top:0}
+.card:hover{transform:translateY(-6px);}
+
+.card h3{margin:0 0 0.6rem;color:var(--accent);}
 
 /* ======================
-   QUEST LOG
+   RPG QUEST LOG / TIMELINE
 ====================== */
 .quest-log{
   display:grid;
-  gap:1rem;
+  gap:.8rem;
 }
 
 .quest{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:1rem 1.2rem;
+  padding:.9rem 1.2rem;
   border-radius:14px;
   background:linear-gradient(180deg,rgba(255,255,255,.04),transparent),var(--card);
   border-left:4px solid var(--accent);
+  opacity:0;
+  transform:translateY(20px);
 }
 
 .quest span{
@@ -190,15 +198,24 @@ footer{
 /* ======================
    ANIMATIONS
 ====================== */
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-18px);}
+}
+
 .reveal{
   opacity:1!important;
   transform:translateY(0)!important;
   transition:.8s ease;
 }
 
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-18px)}
+/* SAFETY fallback if JS delayed */
+.no-js .hero-title,
+.no-js .subtitle,
+.no-js .card,
+.no-js .quest{
+  opacity:1!important;
+  transform:none!important;
 }
 </style>
 </head>
@@ -212,13 +229,12 @@ footer{
   </div>
 
   <div class="aegis">
-    <img src="https://i.ibb.co/jkR7qjZx/file-000000000e64720a9d53c9309745579c.png" alt="Aegis Companion">
+    <img src="aegis.png" alt="Aegis Companion">
   </div>
 
   <h1 class="hero-title">Quest<span>Alarm</span></h1>
   <p class="subtitle">
-    Legendary game tools, AI companions, and cinematic systems
-    for players who never miss a quest.
+    Legendary game tools, AI companions, and cinematic systems for players who never miss a quest.
   </p>
 
   <div class="links">
@@ -228,7 +244,6 @@ footer{
 </header>
 
 <section>
-
   <div class="card">
     <h3>🎮 QuestAlarm</h3>
     <p>Turns real-world time into in-game urgency.</p>
@@ -248,7 +263,6 @@ footer{
       <div class="quest">Public Launch <span>LOCKED</span></div>
     </div>
   </div>
-
 </section>
 
 <footer>
@@ -261,184 +275,36 @@ footer{
 </audio>
 
 <script>
-/* THEME */
+// Remove .no-js class
+document.documentElement.classList.remove("no-js");
+
+/* THEME TOGGLE */
 function toggleTheme(){
   const t=document.documentElement.getAttribute("data-theme")==="light"?"dark":"light";
   document.documentElement.setAttribute("data-theme",t);
   localStorage.setItem("theme",t);
 }
 const savedTheme=localStorage.getItem("theme");
-if(savedTheme)document.documentElement.setAttribute("data-theme",savedTheme);
+if(savedTheme) document.documentElement.setAttribute("data-theme",savedTheme);
 
-/* SOUND */
+/* SOUND TOGGLE */
 const audio=document.getElementById("ambient");
 let soundOn=false;
-function toggleSound(){
-  soundOn=!soundOn;
-  soundOn?audio.play():audio.pause();
-}
+function toggleSound(){soundOn=!soundOn;soundOn?audio.play():audio.pause();}
 
 /* SCROLL REVEAL */
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add("reveal");
+    if(e.isIntersecting) e.target.classList.add("reveal");
+    else e.target.classList.remove("reveal");
   });
-},{threshold:.15});
+},{threshold:0.05});
 
-document.querySelectorAll(".card,.hero-title,.subtitle").forEach(el=>observer.observe(el));
+document.querySelectorAll(".hero-title,.subtitle,.card,.quest").forEach(el=>{
+  observer.observe(el);
+  if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add("reveal");
+});
 </script>
 
 </body>
-</html>body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background:
-    radial-gradient(800px circle at top, var(--bg-alt), transparent 60%),
-    var(--bg);
-  color: var(--text);
-  transition: background 0.4s ease, color 0.4s ease;
-}
-
-/* ======================
-   HEADER
-====================== */
-header {
-  position: relative;
-  padding: 6rem 1.5rem 4rem;
-  text-align: center;
-  overflow: hidden;
-}
-
-.hero-title {
-  font-size: clamp(2.6rem, 5vw, 3.4rem);
-  margin: 0;
-  letter-spacing: -0.03em;
-  animation: reveal 1.4s ease forwards;
-}
-
-.hero-title span {
-  color: var(--accent);
-  text-shadow: 0 0 22px var(--accent-soft);
-}
-
-.subtitle {
-  max-width: 640px;
-  margin: 1rem auto 2.5rem;
-  color: var(--muted);
-  font-size: 1.15rem;
-  animation: fadeUp 1.6s ease forwards;
-}
-
-/* ======================
-   BUTTONS
-====================== */
-.links a {
-  display: inline-block;
-  margin: 0.4rem;
-  padding: 0.85rem 1.6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.primary {
-  background: linear-gradient(135deg, var(--accent), #55c7ff);
-  color: #071018;
-  box-shadow: 0 10px 30px var(--accent-soft);
-}
-
-.secondary {
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
-
-.links a:hover {
-  transform: translateY(-3px);
-}
-
-/* ======================
-   TOGGLE
-====================== */
-.toggle {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-/* ======================
-   AEGIS FLOATING
-====================== */
-.aegis {
-  position: absolute;
-  right: 6%;
-  top: 40%;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at top, var(--accent), transparent 60%),
-    var(--card);
-  box-shadow: 0 0 40px var(--accent-soft);
-  animation: float 5s ease-in-out infinite;
-}
-
-/* ======================
-   CONTENT
-====================== */
-section {
-  max-width: 1000px;
-  margin: auto;
-  padding: 0 1.5rem 5rem;
-  display: grid;
-  gap: 1.5rem;
-}
-
-.card {
-  background: var(--card);
-  border-radius: 18px;
-  padding: 1.8rem;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.4);
-  transition: transform 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-.card h3 {
-  margin: 0 0 0.6rem;
-  color: var(--accent);
-}
-
-/* ======================
-   TIMELINE
-====================== */
-.timeline {
-  display: grid;
-  gap: 1rem;
-}
-
-.milestone {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent-soft);
-}
-
-/* ======================
-   FOOTER
-====================== */
-footer {
-  text-align: center;
-  padding: 2
+</html>
